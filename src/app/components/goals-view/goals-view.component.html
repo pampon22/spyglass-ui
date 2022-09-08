@@ -1,0 +1,16 @@
+<p>goals-view works!</p>
+
+<div *ngFor="let goal of goals">
+    <h3>
+        <a [title]="goal.name + ' details' ">
+            {{ goal.description }}
+            {{ goal.amount_needed }}
+            {{ goal.amount_saved }}
+        </a>
+        <!-- <img src= "{{ goal.image_URL }}"> -->
+    </h3>
+</div>
+
+<div class="progressBar">
+    <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+</div>

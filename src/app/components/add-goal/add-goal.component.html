@@ -1,0 +1,93 @@
+<p>add-goal works!</p>
+
+<div class="flex-container">
+    <form [formGroup]="goalDetails" (ngSubmit)="(onSubmit)">
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                    <input
+                        type="text"
+                        pInputText id = "description"
+                        formControlName="description"
+                        placeholder="Describe your goal"
+                        required>
+                    
+                    <div *ngIf="description?.invalid && (description?.dirty || description?.touched)"
+                    class="alert alert-danger">
+                    <div>
+                        <p-message *ngIf="description?.errors?.['required']" severity="warn" 
+                        text="You need to describe your goal"></p-message>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="col-12 md:col-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                    <input
+                        type="number"
+                        pInputText id = "amount_needed"
+                        formControlName="amount_needed"
+                        placeholder="How much is needed?"
+                        required>
+                    
+                    <div *ngIf="amount_needed?.invalid && (amount_needed?.dirty || amount_needed?.touched)"
+                    class="alert alert-danger">
+                    <div>
+                        <p-message *ngIf="amount_needed?.errors?.['required']" severity="warn" 
+                        text="Enter amount needed"></p-message>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="col-12 md:col-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                    <input
+                        type="number"
+                        pInputText id = "amount_saved"
+                        formControlName="amount_saved"
+                        placeholder="How much have you saved?"
+                        required>
+                    
+                    <div *ngIf="amount_saved?.invalid && (amount_saved?.dirty || amount_saved?.touched)"
+                    class="alert alert-danger">
+                    <div>
+                        <p-message *ngIf="amount_saved?.errors?.['required']" severity="warn" 
+                        text="Enter amount saved"></p-message>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="col-12 md:col-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                    <input
+                        type="date" min="{{ today }}"
+                        pInputText id = "complete_by"
+                        formControlName="complete_by"
+                        placeholder="When would you like to complete this goal?"
+                        required>
+                    
+                    <div *ngIf="complete_by?.invalid && (complete_by?.dirty || complete_by?.touched)"
+                    class="alert alert-danger">
+                    <div>
+                        <p-message *ngIf="complete_by?.errors?.['required']" severity="warn" 
+                        text="Enter target date"></p-message>
+                    </div>
+                </div>
+                </div>
+            </div>
+            
+            <button pButton class="button" label="Submit" (click)="onSubmit()"
+                type="submit" icon="pi pi-check" iconPos="right"></button>
+
+        </div>
+
+    </form>
+
+</div>
