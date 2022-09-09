@@ -6,6 +6,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Goal } from 'src/app/models/goal.model';
+import { DetailedViewComponent } from '../detailed-view/detailed-view.component';
 
 @Component({
   selector: 'app-goals-view',
@@ -17,7 +18,7 @@ export class GoalsViewComponent implements OnInit {
   goals: any = [];
   // image_URL: string = 'https://www.gstatic.com/youtube/img/promos/growth/c59926d483c3675b72ed09ae5b59e0327acc768664357a50f78234994a418cc0_122x56.webp';
 
-  displayedColumns: string[] = ['description', 'amount_needed', 'amount_saved', 'complete_by', 'image_URL'];
+  displayedColumns: string[] = ['description', 'amount_needed', 'amount_saved', 'complete_by', 'image_URL', 'action'];
   dataSource!: MatTableDataSource<Goal>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -27,9 +28,9 @@ export class GoalsViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.retrieveData();
-    setInterval( () => {
-      this.retrieveData();}, 
-       1000)
+    // setInterval( () => {
+    //   this.retrieveData();}, 
+    //    1000)
     }
 
   retrieveData(): void {
@@ -39,12 +40,15 @@ export class GoalsViewComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort
     });
-    console.log('all goals' + this.goals);
   }
 
   openDialog(): void {
     this.dialog.open(AddGoalComponent, {
-      width: '40%', height: '60%'
+      width: '30%', height: '70%'
+    }).afterClosed().subscribe(value => {
+      if (value==='update') {
+        this.retrieveData();
+      }
     })
   }
 
@@ -55,6 +59,17 @@ export class GoalsViewComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  editGoal(row: Goal): void {
+    this.dialog.open(AddGoalComponent, {
+      width: '40%', data: row
+    })
+  }
+
+  removeGoal(id: number): void {
+    this.service.delete(id).subscribe();
+    window.alert('Successfully deleted');
   }
 
 }

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  SPYGLASS_URI: 'http://localhost:8080/goal'
+  SPYGLASS_URI: 'http://localhost:8080/goal/'
 };
 
 /*

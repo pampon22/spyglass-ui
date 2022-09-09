@@ -1,18 +1,24 @@
 export class Goal {
 
+	id?:		   number;
     description:   string;
 	amount_needed: number;
 	amount_saved:  number;
 	complete_by:   Date;
     image_URL:     string;
 
-    constructor(description : string, amount_needed : number, amount_saved : number, complete_by : Date, image_URL: string) {
+    constructor(description : string, amount_needed : number, amount_saved : number, complete_by : Date, image_URL: string, id?:number) {
         this.description = description;
         this.amount_needed = amount_needed;
         this.amount_saved = amount_saved;
         this.complete_by = complete_by;
         this.image_URL = image_URL;
+		this.id = id;
     }
+
+	public setId(id: number): void {
+		this.id = id;
+	}
 
     public getDescription(): string {
 		return this.description;
