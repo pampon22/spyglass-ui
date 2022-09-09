@@ -33,4 +33,7 @@ export class APIService {
     return this.http.delete<any>(this.url + `${id}`);
   }
 
+  getPieValues(): Observable<any> {
+    return this.http.get<any>(this.url + 'pie');
+  }
 }

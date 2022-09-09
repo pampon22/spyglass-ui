@@ -18,6 +18,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { NgApexchartsModule } from 'ng-apexcharts'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { AddGoalComponent } from './components/add-goal/add-goal.component';
 import { GoalsViewComponent } from './components/goals-view/goals-view.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DetailedViewComponent } from './components/detailed-view/detailed-view.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { DetailedViewComponent } from './components/detailed-view/detailed-view.
     AddGoalComponent,
     GoalsViewComponent,
     DetailedViewComponent,
+    PieChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,7 @@ import { DetailedViewComponent } from './components/detailed-view/detailed-view.
     MessageModule, MessagesModule, BrowserAnimationsModule,
     MatDialogModule, MatToolbarModule, MatIconModule, MatButtonModule,
     MatInputModule, MatDatepickerModule, MatNativeDateModule, MatTableModule,
-    MatPaginatorModule, MatSortModule
+    MatPaginatorModule, MatSortModule, ReactiveFormsModule, NgApexchartsModule
   ],
   providers: [{
     provide: MatDialogRef,

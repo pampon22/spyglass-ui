@@ -2,11 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { APIService } from 'src/app/services/api-service.service';
 import { AddGoalComponent } from '../add-goal/add-goal.component';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Goal } from 'src/app/models/goal.model';
-import { DetailedViewComponent } from '../detailed-view/detailed-view.component';
 
 @Component({
   selector: 'app-goals-view',
@@ -16,7 +15,6 @@ import { DetailedViewComponent } from '../detailed-view/detailed-view.component'
 export class GoalsViewComponent implements OnInit {
 
   goals: any = [];
-  // image_URL: string = 'https://www.gstatic.com/youtube/img/promos/growth/c59926d483c3675b72ed09ae5b59e0327acc768664357a50f78234994a418cc0_122x56.webp';
 
   displayedColumns: string[] = ['description', 'amount_needed', 'amount_saved', 'complete_by', 'image_URL', 'action'];
   dataSource!: MatTableDataSource<Goal>;
@@ -28,9 +26,9 @@ export class GoalsViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.retrieveData();
-    // setInterval( () => {
-    //   this.retrieveData();}, 
-    //    1000)
+    setInterval( () => {
+      this.retrieveData();}, 
+       1000)
     }
 
   retrieveData(): void {
@@ -38,7 +36,7 @@ export class GoalsViewComponent implements OnInit {
       this.goals = data;
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort
+      this.dataSource.sort = this.sort;
     });
   }
 
