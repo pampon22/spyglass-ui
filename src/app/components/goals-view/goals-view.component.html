@@ -1,5 +1,4 @@
-<p>goals-view works!</p>
-
+<!-- 
 <div *ngFor="let goal of goals">
     <h3>
         <a [title]="goal.name + ' details' ">
@@ -7,10 +6,22 @@
             {{ goal.amount_needed }}
             {{ goal.amount_saved }}
         </a>
-        <!-- <img src= "{{ goal.image_URL }}"> -->
+        <img src= "{{ goal.image_URL }}">
     </h3>
 </div>
 
 <div class="progressBar">
     <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
-</div>
+</div> -->
+
+<mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>home</mat-icon>
+    </button>
+    <span>Spyglass App</span>
+    <span class="spacer"></span>
+    <button mat-raised-button color="accent" (click)="openDialog()">
+            Add goal <mat-icon matSuffix>add</mat-icon>
+    </button>
+    
+</mat-toolbar>

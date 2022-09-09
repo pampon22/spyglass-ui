@@ -1,6 +1,6 @@
-<p>add-goal works!</p>
+<p>Enter details for new goal</p>
 
-<div class="flex-container">
+<!-- <div class="flex-container">
     <form [formGroup]="goalDetails" (ngSubmit)="(onSubmit)">
         <div class="grid p-fluid">
             <div class="col-12 md:col-4">
@@ -90,4 +90,51 @@
 
     </form>
 
+    <div mat-dialog-action [align]="'end'">
+        <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+        <button style="margin-left: 8px" mat-raised-button color="primary">Save</button>
+    </div>
+
+</div> -->
+
+<h1 mat-dialog-title>Create new goal</h1>
+
+<div mat-dialog-content>
+    <form [formGroup]="goalDetails">
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <mat-icon matSuffix>description</mat-icon>
+            <input formControlName="description" matInput placeholder="Description"/>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Amount needed</mat-label>
+            <mat-icon matSuffix>paid</mat-icon>
+            <input type="number" formControlName="amount_needed" matInput placeholder="amount_needed"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Amount saved</mat-label>
+            <mat-icon matSuffix>savings</mat-icon>
+            <input type="number" formControlName="amount_saved" matInput placeholder="amount saved"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Target Date</mat-label>
+            <input min="{{ today }}" formControlName="complete_by" matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <!-- <input formControlName="complete_by" matInput placeholder=" "/> -->
+        </mat-form-field>
+
+    </form>
+</div>
+
+<div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>
+        Cancel <mat-icon matSuffix>close</mat-icon>
+    </button>
+    <button style="margin-left: 10px; background-color: green;" mat-raised-button color="primary" (click)="onSubmit()">
+        Save <mat-icon matSuffix>check</mat-icon>
+    </button>
 </div>
