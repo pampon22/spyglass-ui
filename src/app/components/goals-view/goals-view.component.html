@@ -1,27 +1,83 @@
 <!-- 
 <div *ngFor="let goal of goals">
-    <h3>
-        <a [title]="goal.name + ' details' ">
-            {{ goal.description }}
-            {{ goal.amount_needed }}
-            {{ goal.amount_saved }}
-        </a>
-        <img src= "{{ goal.image_URL }}">
-    </h3>
+	<h3>
+		<a [title]="goal.name + ' details' ">
+			{{ goal.description }}
+			{{ goal.amount_needed }}
+			{{ goal.amount_saved }}
+		</a>
+		<img src= "{{ goal.image_URL }}">
+	</h3>
 </div>
 
 <div class="progressBar">
-    <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+	<mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
 </div> -->
 
+<!-- toolbar with the add new goal button functionality -->
 <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>home</mat-icon>
-    </button>
-    <span>Spyglass App</span>
-    <span class="spacer"></span>
-    <button mat-raised-button color="accent" (click)="openDialog()">
-            Add goal <mat-icon matSuffix>add</mat-icon>
-    </button>
-    
+	<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+	<mat-icon>home</mat-icon>
+	</button>
+	<span>Spyglass App</span>
+	<span class="spacer"></span>
+	<button mat-raised-button color="accent" (click)="openDialog()">
+			Add goal <mat-icon matSuffix>add</mat-icon>
+	</button>
 </mat-toolbar>
+
+<!-- view of the all the goals we have so far -->
+<div class="container">
+	<div style="margin-top: 10px;">
+		<mat-form-field appearance="standard">
+			<mat-label>Filter</mat-label>
+			<input matInput (keyup)="applyFilter($event)" placeholder="Ex. Car" #input>
+		  </mat-form-field>
+		  
+		  <div class="mat-elevation-z8">
+			<table mat-table [dataSource]="dataSource" matSort>
+		  
+			  <!-- Description Column -->
+			  <ng-container matColumnDef="description">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+				<td mat-cell *matCellDef="let row"> {{ row.description }} </td>
+			  </ng-container>
+		  
+			  <!-- Amount needed Column -->
+			  <ng-container matColumnDef="amount_needed">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header> Amount needed </th>
+				<td mat-cell *matCellDef="let row"> {{ row.amount_needed | currency }} </td>
+			  </ng-container>
+		  
+			  <!-- Saved amount Column -->
+			  <ng-container matColumnDef="amount_saved">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header> Amount saved</th>
+				<td mat-cell *matCellDef="let row"> {{ row.amount_saved | currency }} </td>
+			  </ng-container>
+		  
+			  <!-- Date Column -->
+			  <ng-container matColumnDef="complete_by">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header> Target date </th>
+				<td mat-cell *matCellDef="let row"> {{ row.complete_by | date }} </td>
+			  </ng-container>
+
+			  <!-- Image Column -->
+			  <ng-container matColumnDef="image_URL">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header> Image </th>
+				<td mat-cell *matCellDef="let row"> <img src= "{{ row.image_URL }}"> </td>
+			  </ng-container>
+		  
+			  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+		  
+			  <!-- Row shown when there is no matching data. -->
+			  <tr class="mat-row" *matNoDataRow>
+				<td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+			  </tr>
+			</table>
+		  
+			<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+		  </div>
+		  
+	</div>
+</div>

@@ -29,7 +29,7 @@ export class AddGoalComponent implements OnInit {
       amount_needed:['', Validators.required],
       amount_saved:['', Validators.required],
       complete_by:['', Validators.required],
-      // image_URL:['', Validators.required],
+      image_URL:['', Validators.required],
     })
   };
 
@@ -38,9 +38,9 @@ export class AddGoalComponent implements OnInit {
     const amt_n = this.goalDetails.value.amount_needed;
     const amt_s = this.goalDetails.value.amount_saved;
     const date = this.goalDetails.value.complete_by;
-    // const url = this.goalDetails.value.image_URL;
+    const url = this.goalDetails.value.image_URL;
 
-    this.goal = new Goal(descrip, amt_n, amt_s, date);
+    this.goal = new Goal(descrip, amt_n, amt_s, date, url);
     this.service.save(this.goal).subscribe((data) => {
       this.goalDetails.reset();
       this.dialogRef.close('save');

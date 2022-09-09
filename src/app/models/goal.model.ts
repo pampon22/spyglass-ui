@@ -4,14 +4,14 @@ export class Goal {
 	amount_needed: number;
 	amount_saved:  number;
 	complete_by:   Date;
-    // image_URL:     string;
+    image_URL:     string;
 
-    constructor(description : string, amount_needed : number, amount_saved : number, complete_by : Date) {
+    constructor(description : string, amount_needed : number, amount_saved : number, complete_by : Date, image_URL: string) {
         this.description = description;
         this.amount_needed = amount_needed;
         this.amount_saved = amount_saved;
         this.complete_by = complete_by;
-        // this.image_URL = image_URL;
+        this.image_URL = image_URL;
     }
 
     public getDescription(): string {
@@ -46,12 +46,12 @@ export class Goal {
 		this.complete_by = complete_by;
 	}
 
-    // public getImage_URL(): string {
-	// 	return this.image_URL;
-	// }
+    public getImage_URL(): string {
+		return this.image_URL;
+	}
 
-	// public setImage_URL(url: string): void {
-	// 	this.image_URL = url;
-	// }
+	public setImage_URL(url: string): void {
+		this.image_URL = url;
+	}
 
 }
